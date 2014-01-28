@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# object PUT
+
+. ./get_token
+
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c/a/o1 --data-binary 1 -XPUT
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c/a/o2 --data-binary 2 -XPUT
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c/a/o3 --data-binary 3 -XPUT
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c/a/o4 --data-binary 4 -XPUT
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c/a/o5 --data-binary 5 -XPUT
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c/a/o6 --data-binary 6 -XPUT
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c/a/o7 --data-binary 7 -XPUT
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c/a/o8 --data-binary 8 -XPUT
+
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c/b/o1 --data-binary a -XPUT
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c/b/o2 --data-binary b -XPUT
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c/b/o3 --data-binary c -XPUT
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c/b/o4 --data-binary d -XPUT
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c/b/o5 --data-binary e -XPUT
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c/b/o6 --data-binary f -XPUT
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c/b/o7 --data-binary g -XPUT
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c/b/o8 --data-binary h -XPUT

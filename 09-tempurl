@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# tempurl
+
+. ./get_token
+
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test -XPOST -H "X-Account-Meta-Temp-URL-Key: seacrit"
+
+URLPATH=`swift-temp-url GET 30 /v1/AUTH_test/c/a/o1 seacrit`
+
+echo "curl -i http://saio:8080$URLPATH"
+curl -i http://saio:8080$URLPATH

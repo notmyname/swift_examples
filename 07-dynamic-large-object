@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# dynamic manifest
+
+. ./get_token
+
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c2 -XPUT
+
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c2/dynamic_large -XPUT -H "Content-Length: 0" -H "X-Object-Manifest: c/a/"
+
+
+
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c2/dynamic_large

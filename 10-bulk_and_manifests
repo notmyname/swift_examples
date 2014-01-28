@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# bulk + dynamic manifests
+
+. ./get_token
+
+
+# create the logs container
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs -XPUT
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup -XPUT
+
+# make the dynamic manifest objects
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup/2012_logs -XPUT -H "Content-Length: 0" -H "X-Object-Manifest: logs/2012/"
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup/Jan2012_logs -XPUT -H "Content-Length: 0" -H "X-Object-Manifest: logs/2012/01/"
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup/Feb2012_logs -XPUT -H "Content-Length: 0" -H "X-Object-Manifest: logs/2012/02/"
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup/Mar2012_logs -XPUT -H "Content-Length: 0" -H "X-Object-Manifest: logs/2012/03/"
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup/Apr2012_logs -XPUT -H "Content-Length: 0" -H "X-Object-Manifest: logs/2012/04/"
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup/May2012_logs -XPUT -H "Content-Length: 0" -H "X-Object-Manifest: logs/2012/05/"
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup/Jun2012_logs -XPUT -H "Content-Length: 0" -H "X-Object-Manifest: logs/2012/06/"
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup/Jul2012_logs -XPUT -H "Content-Length: 0" -H "X-Object-Manifest: logs/2012/07/"
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup/Aug2012_logs -XPUT -H "Content-Length: 0" -H "X-Object-Manifest: logs/2012/08/"
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup/Sep2012_logs -XPUT -H "Content-Length: 0" -H "X-Object-Manifest: logs/2012/09/"
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup/Oct2012_logs -XPUT -H "Content-Length: 0" -H "X-Object-Manifest: logs/2012/10/"
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup/Nov2012_logs -XPUT -H "Content-Length: 0" -H "X-Object-Manifest: logs/2012/11/"
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup/Dec2012_logs -XPUT -H "Content-Length: 0" -H "X-Object-Manifest: logs/2012/12/"
+
+# upload tar file
+tar tzf logs.tgz
+
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs?extract-archive=tar.gz -T logs.tgz
+
+
+# download a sample month rollup
+echo "curl -i -H \"X-Auth-Token: $TOKEN\" http://saio:8080/v1/AUTH_test/logs_rollup/Aug2012_logs"
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup/Aug2012_logs

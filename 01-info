@@ -1,0 +1,3 @@
+# /info
+
+curl http://saio:8080/info 2>/dev/null | python -m json.tool

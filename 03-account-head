@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# account HEAD
+
+. ./get_token
+
+echo "curl -i -H \"X-Auth-Token: AUTH_tk4077a9de10d64ae4b74b3fea5b061ad4\" http://saio:8080/v1/AUTH_test/"
+curl -I -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# static manifest
+
+. ./get_token
+
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c2 -XPUT
+
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c2/static_large?multipart-manifest=put -XPUT --data-binary '
+[
+{"path": "/c/a/o1", "etag": "c4ca4238a0b923820dcc509a6f75849b", "size_bytes": 1},
+{"path": "/c/a/o3", "etag": "eccbc87e4b5ce2fe28308fd9f2a7baf3", "size_bytes": 1},
+{"path": "/c/a/o5", "etag": "e4da3b7fbbce2345d7772b0674a318d5", "size_bytes": 1},
+{"path": "/c/a/o7", "etag": "8f14e45fceea167a5a36dedd4bea2543", "size_bytes": 1},
+{"path": "/c/b/o1", "etag": "0cc175b9c0f1b6a831c399e269772661", "size_bytes": 1},
+{"path": "/c/b/o3", "etag": "4a8a08f09d37b73795649038408b5f33", "size_bytes": 1},
+{"path": "/c/b/o5", "etag": "e1671797c52e15f763380b45e841ec32", "size_bytes": 1},
+{"path": "/c/b/o7", "etag": "b2f5ff47436671b6e533d8dc3614845d", "size_bytes": 1}
+]
+'
+
+
+echo "curl -i -H \"X-Auth-Token: $TOKEN\" http://saio:8080/v1/AUTH_test/c2/static_large"
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c2/static_large

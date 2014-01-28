@@ -1,0 +1,4 @@
+# Auth
+
+echo "curl -i -H \"X-Auth-User: test:tester\" -H \"X-Auth-Key: testing\" http://saio:8080/auth/v1.0"
+curl -i -H "X-Auth-User: test:tester" -H "X-Auth-Key: testing" http://saio:8080/auth/v1.0

@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# contianer listings
+
+. ./get_token
+
+echo "plain test simple listing"
+echo "curl -i -H \"X-Auth-Token: $TOKEN\" http://saio:8080/v1/AUTH_test/c"
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c
+echo
+
+echo "with marker=b/"
+echo "curl -i -H \"X-Auth-Token: $TOKEN\" http://saio:8080/v1/AUTH_test/c?marker=b/"
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c?marker=b/
+echo
+
+echo "with prefix=a/"
+echo "curl -i -H \"X-Auth-Token: $TOKEN\" http://saio:8080/v1/AUTH_test/c?prefix=a/"
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c?prefix=a/
+echo
+
+echo "with end_marker"
+echo "curl -i -H \"X-Auth-Token: $TOKEN\" http://saio:8080/v1/AUTH_test/c?end_marker=b/"
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c?end_marker=b/
+echo
+
+echo "with limit"
+echo "curl -i -H \"X-Auth-Token: $TOKEN\" http://saio:8080/v1/AUTH_test/c?limit=5"
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c?limit=5
+echo
+
+echo "json format"
+echo "curl -i -H \"X-Auth-Token: $TOKEN\" http://saio:8080/v1/AUTH_test/c?format=json&limit=1"
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c?format=json\&limit=1

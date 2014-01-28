@@ -1,0 +1,3 @@
+# get token
+
+TOKEN=`curl -i -H "X-Auth-User: test:tester" -H "X-Auth-Key: testing" http://saio:8080/auth/v1.0 2>/dev/null | grep X-Auth-Token | cut -d ' ' -f 2 | tr -d '\r'`
