@@ -4,6 +4,8 @@
 
 . ./get_token
 
+echo "Create 16 objects in the same container"
+
 curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c/a/o1 --data-binary 1 -XPUT
 curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c/a/o2 --data-binary 2 -XPUT
 curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c/a/o3 --data-binary 3 -XPUT

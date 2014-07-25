@@ -4,4 +4,5 @@
 
 . ./get_token
 
+echo "curl -i -H \"X-Auth-Token: $TOKEN\" http://saio:8080/v1/AUTH_test/c -XPUT"
 curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c -XPUT
