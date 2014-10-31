@@ -4,8 +4,12 @@
 
 . ./get_token
 
+echo "Create container c2"
+echo "curl -i -H \"X-Auth-Token: $TOKEN\" http://saio:8080/v1/AUTH_test/c2 -XPUT"
 curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c2 -XPUT
-
+echo
+echo
+echo "Create the static manifest object"
 curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c2/static_large?multipart-manifest=put -XPUT --data-binary '
 [
 {"path": "/c/a/o1", "etag": "c4ca4238a0b923820dcc509a6f75849b", "size_bytes": 1},
@@ -18,7 +22,7 @@ curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c2/static_large?
 {"path": "/c/b/o7", "etag": "b2f5ff47436671b6e533d8dc3614845d", "size_bytes": 1}
 ]
 '
-
-
+echo
+echo
 echo "curl -i -H \"X-Auth-Token: $TOKEN\" http://saio:8080/v1/AUTH_test/c2/static_large"
 curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c2/static_large

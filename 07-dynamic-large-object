@@ -5,11 +5,15 @@
 . ./get_token
 
 echo "create container c2"
+echo "curl -i -H \"X-Auth-Token: $TOKEN\" http://saio:8080/v1/AUTH_test/c2 -XPUT"
 curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c2 -XPUT
-
+echo
+echo
+echo "Create the dynamic manifest object"
 echo "curl -i -H \"X-Auth-Token: $TOKEN\" http://saio:8080/v1/AUTH_test/c2/dynamic_large -XPUT -H \"Content-Length: 0\" -H \"X-Object-Manifest: c/a/\""
 curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c2/dynamic_large -XPUT -H "Content-Length: 0" -H "X-Object-Manifest: c/a/"
-
-
+echo
+echo
 echo "read the dynamic large object manifest"
+echo "curl -i -H \"X-Auth-Token: $TOKEN\" http://saio:8080/v1/AUTH_test/c2/dynamic_large"
 curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/c2/dynamic_large

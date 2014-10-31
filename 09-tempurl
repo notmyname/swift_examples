@@ -4,9 +4,12 @@
 
 . ./get_token
 
+echo "add a tempurl to the account metadata"
+echo "curl -i -H \"X-Auth-Token: $TOKEN\" http://saio:8080/v1/AUTH_test -XPOST -H \"X-Account-Meta-Temp-URL-Key: seacrit\""
 curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test -XPOST -H "X-Account-Meta-Temp-URL-Key: seacrit"
 
-URLPATH=`swift-temp-url GET 30 /v1/AUTH_test/c/a/o1 seacrit`
+SWIFTCODE=/Users/john/Documents/swift
+URLPATH=`${SWIFTCODE}/bin/swift-temp-url GET 30 /v1/AUTH_test/c/a/o1 seacrit`
 
 echo "curl -i http://saio:8080$URLPATH"
 curl -i http://saio:8080$URLPATH

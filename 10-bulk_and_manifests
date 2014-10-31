@@ -5,12 +5,12 @@
 . ./get_token
 
 
-# create the logs container
+echo "create the logs containers \"logs\" and \"logs_rollup\""
 curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs -XPUT
 curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup -XPUT
 
-# make the dynamic manifest objects
-curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup/2012_logs -XPUT -H "Content-Length: 0" -H "X-Object-Manifest: logs/2012/"
+echo "make the dynamic manifest objects, one for each month"
+curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup/2012_logs    -XPUT -H "Content-Length: 0" -H "X-Object-Manifest: logs/2012/"
 curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup/Jan2012_logs -XPUT -H "Content-Length: 0" -H "X-Object-Manifest: logs/2012/01/"
 curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup/Feb2012_logs -XPUT -H "Content-Length: 0" -H "X-Object-Manifest: logs/2012/02/"
 curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup/Mar2012_logs -XPUT -H "Content-Length: 0" -H "X-Object-Manifest: logs/2012/03/"
@@ -25,11 +25,13 @@ curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup/Nov2
 curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup/Dec2012_logs -XPUT -H "Content-Length: 0" -H "X-Object-Manifest: logs/2012/12/"
 
 # upload tar file
+echo "tar tzf logs.tgz"
 tar tzf logs.tgz
 
+echo "do the bulk upload"
 curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs?extract-archive=tar.gz -T logs.tgz
 
 
-# download a sample month rollup
+echo "download a sample month rollup"
 echo "curl -i -H \"X-Auth-Token: $TOKEN\" http://saio:8080/v1/AUTH_test/logs_rollup/Aug2012_logs"
 curl -i -H "X-Auth-Token: $TOKEN" http://saio:8080/v1/AUTH_test/logs_rollup/Aug2012_logs
