@@ -1,4 +1,6 @@
 #!/bin/bash
 
+# /info request to show capabilities of the cluster
+
 echo "curl http://saio:8080/info 2>/dev/null | python -m json.tool"
 curl http://saio:8080/info 2>/dev/null | python -m json.tool
